@@ -18,9 +18,6 @@ abstract class IMoviesRepository {
   /// Busca a lista de filmes que estão por lançar.
   Future<Either<Failure, List<Movie>>> getUpcomingMovies();
 
-  /// Busca os detalhes de um filme específico pelo seu ID.
-  Future<Either<Failure, Movie>> getMovieDetails(int movieId);
-
   /// Busca filmes por uma string de consulta.
   Future<Either<Failure, List<Movie>>> searchMovies(String query);
 }

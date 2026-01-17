@@ -14,14 +14,6 @@ class MoviesRepositoryImpl implements IMoviesRepository {
   MoviesRepositoryImpl(this._datasource);
 
   @override
-  Future<Either<Failure, Movie>> getMovieDetails(int movieId) async {
-    return _safeCall(() async {
-      final model = await _datasource.getMovieDetails(movieId: movieId);
-      return model.toEntity();
-    });
-  }
-
-  @override
   Future<Either<Failure, List<Movie>>> getPopularMovies() {
     return _safeCall(() async {
       final response = await _datasource.getPopularMovies();

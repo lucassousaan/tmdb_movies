@@ -19,7 +19,6 @@ import '../../features/movies/data/repository/movies_repository_impl.dart'
     as _i203;
 import '../../features/movies/domain/repository/movies_repository.dart'
     as _i188;
-import '../../features/movies/domain/usecases/get_movie_details.dart' as _i79;
 import '../../features/movies/domain/usecases/get_popular_movies.dart' as _i995;
 import '../../features/movies/domain/usecases/get_top_rated_movies.dart'
     as _i1024;
@@ -51,9 +50,6 @@ _i174.GetIt initGetIt(
   );
   gh.lazySingleton<_i188.IMoviesRepository>(
     () => _i203.MoviesRepositoryImpl(gh<_i651.MoviesDatasource>()),
-  );
-  gh.factory<_i79.GetMovieDetails>(
-    () => _i79.GetMovieDetails(gh<_i188.IMoviesRepository>()),
   );
   gh.factory<_i995.GetPopularMovies>(
     () => _i995.GetPopularMovies(gh<_i188.IMoviesRepository>()),
