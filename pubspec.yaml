@@ -48,6 +48,7 @@ dependencies:
   retrofit: ^4.9.2
   intl: ^0.20.2
   shimmer: ^3.0.0
+  rxdart: ^0.28.0
 
 dev_dependencies:
   flutter_test:

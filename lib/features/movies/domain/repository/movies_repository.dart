@@ -1,6 +1,6 @@
 import 'package:fpdart/fpdart.dart';
 import '../../../../core/failures/failure.dart';
-import '../entities/movie.dart';
+import '../../../../shared/domain/entities/movie.dart';
 
 abstract class IMoviesRepository {
   /// Busca a lista de filmes populares.
@@ -17,7 +17,4 @@ abstract class IMoviesRepository {
 
   /// Busca a lista de filmes que estão por lançar.
   Future<Either<Failure, List<Movie>>> getUpcomingMovies();
-
-  /// Busca filmes por uma string de consulta.
-  Future<Either<Failure, List<Movie>>> searchMovies(String query);
 }

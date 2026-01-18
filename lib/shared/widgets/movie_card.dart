@@ -2,8 +2,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../../core/utils/tmdb_image_helper.dart';
-import '../../../domain/entities/movie.dart';
+import '../../core/router/router_module.dart';
+import '../../core/utils/tmdb_image_helper.dart';
+import '../domain/entities/movie.dart';
 
 class MovieCard extends StatelessWidget {
   final Movie movie;
@@ -12,7 +13,6 @@ class MovieCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const double width = 140;
     const double borderRadius = 12.0;
 
     final colorScheme = Theme.of(context).colorScheme;
@@ -20,32 +20,23 @@ class MovieCard extends StatelessWidget {
 
     return GestureDetector(
       onTap: () {
-        context.push('/details', extra: movie);
+        context.push(AppRoutes.details, extra: movie);
       },
-      child: Container(
-        width: width,
-        margin: const EdgeInsets.symmetric(horizontal: 8),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Stack(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Expanded(
+            child: Stack(
+              fit: StackFit.expand,
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(borderRadius),
                   child: CachedNetworkImage(
                     imageUrl: TmdbImageHelper.getPosterUrl(movie.posterPath),
-                    height: 200,
-                    width: width,
                     fit: BoxFit.cover,
-
-                    placeholder: (context, url) => Container(
-                      height: 200,
-                      width: width,
-                      color: colorScheme.surfaceContainerHighest,
-                    ),
+                    placeholder: (context, url) =>
+                        Container(color: colorScheme.surfaceContainerHighest),
                     errorWidget: (context, url, error) => Container(
-                      height: 200,
-                      width: width,
                       decoration: BoxDecoration(
                         color: colorScheme.surfaceContainerHighest,
                         borderRadius: BorderRadius.circular(borderRadius),
@@ -60,7 +51,6 @@ class MovieCard extends StatelessWidget {
                     ),
                   ),
                 ),
-
                 Positioned(
                   bottom: 8,
                   right: 8,
@@ -91,8 +81,11 @@ class MovieCard extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 8),
-            Text(
+          ),
+          const SizedBox(height: 8),
+          SizedBox(
+            height: 36,
+            child: Text(
               movie.title,
               maxLines: 2,
               textAlign: TextAlign.center,
@@ -102,8 +95,8 @@ class MovieCard extends StatelessWidget {
                 color: colorScheme.onSurface,
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

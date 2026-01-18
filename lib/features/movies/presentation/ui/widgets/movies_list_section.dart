@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../cubit/movies_state.dart';
-import 'movie_card.dart';
+import '../../../../../shared/widgets/movie_card.dart';
 import 'movie_card_shimmer.dart';
 
 class MoviesListSection extends StatelessWidget {
@@ -71,12 +71,16 @@ class MoviesListSection extends StatelessWidget {
                   ),
                 );
               }
-              return ListView.builder(
+              return ListView.separated(
                 scrollDirection: Axis.horizontal,
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 itemCount: movies.length,
+                separatorBuilder: (context, index) => const SizedBox(width: 8),
                 itemBuilder: (context, index) {
-                  return MovieCard(movie: movies[index]);
+                  return SizedBox(
+                    width: 140,
+                    child: MovieCard(movie: movies[index]),
+                  );
                 },
               );
             },

@@ -1,7 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../../core/failures/failure.dart';
 import '../../../../core/usecase/usecase.dart';
 import '../../domain/usecases/get_popular_movies.dart';
 import '../../domain/usecases/get_top_rated_movies.dart';
@@ -34,11 +33,8 @@ class MoviesCubit extends Cubit<MoviesState> {
     emit(state.copyWith(popular: const MovieSection.loading()));
     final result = await _getPopularMovies(NoParams());
     result.fold(
-      (failure) => emit(
-        state.copyWith(
-          popular: MovieSection.error(_mapFailureToMessage(failure)),
-        ),
-      ),
+      (failure) =>
+          emit(state.copyWith(popular: MovieSection.error(failure.message))),
       (movies) => emit(state.copyWith(popular: MovieSection.success(movies))),
     );
   }
@@ -47,11 +43,8 @@ class MoviesCubit extends Cubit<MoviesState> {
     emit(state.copyWith(topRated: const MovieSection.loading()));
     final result = await _getTopRatedMovies(NoParams());
     result.fold(
-      (failure) => emit(
-        state.copyWith(
-          topRated: MovieSection.error(_mapFailureToMessage(failure)),
-        ),
-      ),
+      (failure) =>
+          emit(state.copyWith(topRated: MovieSection.error(failure.message))),
       (movies) => emit(state.copyWith(topRated: MovieSection.success(movies))),
     );
   }
@@ -60,11 +53,8 @@ class MoviesCubit extends Cubit<MoviesState> {
     emit(state.copyWith(trending: const MovieSection.loading()));
     final result = await _getTrendingMovies(NoParams());
     result.fold(
-      (failure) => emit(
-        state.copyWith(
-          trending: MovieSection.error(_mapFailureToMessage(failure)),
-        ),
-      ),
+      (failure) =>
+          emit(state.copyWith(trending: MovieSection.error(failure.message))),
       (movies) => emit(state.copyWith(trending: MovieSection.success(movies))),
     );
   }
@@ -73,21 +63,9 @@ class MoviesCubit extends Cubit<MoviesState> {
     emit(state.copyWith(upcoming: const MovieSection.loading()));
     final result = await _getUpcomingMovies(NoParams());
     result.fold(
-      (failure) => emit(
-        state.copyWith(
-          upcoming: MovieSection.error(_mapFailureToMessage(failure)),
-        ),
-      ),
+      (failure) =>
+          emit(state.copyWith(upcoming: MovieSection.error(failure.message))),
       (movies) => emit(state.copyWith(upcoming: MovieSection.success(movies))),
     );
-  }
-
-  String _mapFailureToMessage(Failure failure) {
-    if (failure is ConnectionFailure) {
-      return 'Sem conexão com a internet';
-    } else if (failure is ServerFailure) {
-      return failure.message;
-    }
-    return 'Ocorreu um erro inesperado';
   }
 }

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../core/di/injection.dart';
+import '../../../../../core/router/router_module.dart';
 import '../../cubit/movies_cubit.dart';
 import '../../cubit/movies_state.dart';
 import '../widgets/movies_list_section.dart';
@@ -17,7 +19,12 @@ class MoviesPage extends StatelessWidget {
         appBar: AppBar(
           title: const Text('TMDB Movies'),
           actions: [
-            IconButton(icon: const Icon(Icons.search), onPressed: () {}),
+            IconButton(
+              icon: const Icon(Icons.search),
+              onPressed: () {
+                context.push(AppRoutes.search);
+              },
+            ),
           ],
         ),
         body: const MoviesBody(),

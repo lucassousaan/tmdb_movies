@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/date_extensions.dart';
 import '../../../../../core/utils/tmdb_image_helper.dart';
-import '../../../domain/entities/movie.dart';
+import '../../../../../shared/domain/entities/movie.dart';
 
 class MovieDetailsPage extends StatelessWidget {
   final Movie movie;

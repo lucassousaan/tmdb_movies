@@ -4,12 +4,12 @@ import 'package:injectable/injectable.dart';
 
 import '../../../../core/failures/failure.dart';
 import '../../../../core/usecase/usecase.dart';
-import '../entities/movie.dart';
-import '../repository/movies_repository.dart';
+import '../../../../shared/domain/entities/movie.dart';
+import '../repository/search_repository.dart';
 
 @injectable
 class SearchMovies implements UseCase<List<Movie>, SearchMoviesParams> {
-  final IMoviesRepository repository;
+  final ISearchRepository repository;
   SearchMovies(this.repository);
 
   @override

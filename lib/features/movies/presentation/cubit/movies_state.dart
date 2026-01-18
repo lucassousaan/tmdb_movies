@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import '../../domain/entities/movie.dart';
+import '../../../../shared/domain/entities/movie.dart';
 
 part 'movies_state.freezed.dart';
 

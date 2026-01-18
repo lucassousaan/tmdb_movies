@@ -3,7 +3,7 @@ import 'package:injectable/injectable.dart';
 
 import '../../../../core/failures/failure.dart';
 import '../../../../core/usecase/usecase.dart';
-import '../entities/movie.dart';
+import '../../../../shared/domain/entities/movie.dart';
 import '../repository/movies_repository.dart';
 
 @injectable

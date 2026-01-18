@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
 
-import '../models/movie_response.dart';
+import '../../../../shared/data/models/movie_response.dart';
 
 part 'movies_datasource.g.dart';
 
@@ -26,11 +26,5 @@ abstract class MoviesDatasource {
   @GET('/trending/movie/{time_window}')
   Future<MovieResponse> getTrendingMovies({
     @Path('time_window') String timeWindow = 'day',
-  });
-
-  @GET('/search/movie')
-  Future<MovieResponse> searchMovies({
-    @Query("query") required String query,
-    @Query("page") int page = 1,
   });
 }
