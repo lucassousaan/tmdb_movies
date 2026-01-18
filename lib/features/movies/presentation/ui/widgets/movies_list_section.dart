@@ -38,10 +38,12 @@ class MoviesListSection extends StatelessWidget {
         SizedBox(
           height: height,
           child: section.when(
-            loading: () => ListView.builder(
+            loading: () => ListView.separated(
               scrollDirection: Axis.horizontal,
               padding: const EdgeInsets.symmetric(horizontal: 8),
-              itemCount: 5,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: 20,
+              separatorBuilder: (context, index) => const SizedBox(width: 8),
               itemBuilder: (context, index) => const MovieCardShimmer(),
             ),
             error: (message) => Center(
