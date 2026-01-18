@@ -85,14 +85,18 @@ class MovieCard extends StatelessWidget {
           const SizedBox(height: 8),
           SizedBox(
             height: 36,
-            child: Text(
-              movie.title,
-              maxLines: 2,
-              textAlign: TextAlign.center,
-              overflow: TextOverflow.ellipsis,
-              style: textTheme.bodyMedium?.copyWith(
-                fontWeight: FontWeight.w600,
-                color: colorScheme.onSurface,
+            child: Align(
+              alignment: Alignment.topCenter,
+              child: Text(
+                movie.title,
+                maxLines: 2,
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+                style: textTheme.bodyMedium?.copyWith(
+                  fontWeight: FontWeight.w600,
+                  color: colorScheme.onSurface,
+                  height: 1.2,
+                ),
               ),
             ),
           ),
