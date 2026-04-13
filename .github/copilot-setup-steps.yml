@@ -1,0 +1,15 @@
+steps:
+  - uses: subosito/flutter-action@v2
+    with:
+      channel: stable
+
+  - name: Install dependencies
+    run: flutter pub get
+
+  - name: Create .env file
+    run: |
+      echo "TMDB_API_KEY=test_key" > .env
+      echo "BASE_URL=https://api.themoviedb.org/3" >> .env
+
+  - name: Generate code
+    run: dart run build_runner build --delete-conflicting-outputs
